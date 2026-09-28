@@ -1,0 +1,37 @@
+// =============================================================================
+// COLOR TOKENS
+// Camada de personalização sobre as CSS vars do DaisyUI.
+// As vars --color-* do DaisyUI são definidas em themes.css (importado no main.scss).
+// Aqui definimos APENAS tokens extras ou sobreescritas da marca.
+// =============================================================================
+
+// Brand colors (escala HSL para fácil ajuste)
+$brand-primary-h: 262;
+$brand-primary-s: 80%;
+$brand-primary-l: 58%;
+
+$brand-secondary-h: 316;
+$brand-secondary-s: 70%;
+$brand-secondary-l: 55%;
+
+$brand-accent-h: 190;
+$brand-accent-s: 90%;
+$brand-accent-l: 50%;
+
+// Superficie / Neutros escuros (usados no dark theme)
+$surface-900: hsl(224, 20%, 6%);
+$surface-800: hsl(224, 18%, 10%);
+$surface-700: hsl(224, 16%, 14%);
+$surface-600: hsl(224, 14%, 20%);
+$surface-500: hsl(224, 12%, 30%);
+
+// Texto
+$text-primary:   hsl(0, 0%, 96%);
+$text-secondary: hsl(0, 0%, 65%);
+$text-muted:     hsl(0, 0%, 40%);
+
+// Semânticos
+$color-success: hsl(142, 71%, 45%);
+$color-warning: hsl(38,  92%, 50%);
+$color-error:   hsl(0,   72%, 51%);
+$color-info:    hsl(199, 89%, 48%);

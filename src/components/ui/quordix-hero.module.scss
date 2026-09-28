@@ -1,0 +1,374 @@
+.quordixShell {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Top Floating Glassmorphism Navbar ── */
+.navWrap {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.navPill {
+  width: 100%;
+  max-width: 56rem;
+  background: color-mix(in srgb, var(--color-base-100) 80%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, var(--color-base-300));
+  border-radius: 9999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.logoSvg {
+  width: 6.5rem;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-base-content);
+  opacity: 0.75;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    color: var(--color-primary);
+    transform: scale(1.05);
+  }
+}
+
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary-content, #ffffff);
+  background: var(--color-primary);
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  white-space: nowrap;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-primary) 60%, transparent);
+  }
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--color-base-content);
+  flex-direction: column;
+  gap: 5px;
+  z-index: 110;
+  position: relative;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+}
+
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: color-mix(in srgb, var(--color-base-100) 95%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.mobileLink {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-base-content);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ── Interactive Dot Grid Canvas Background ── */
+.canvasBackground {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--color-base-100);
+}
+
+.canvasElement {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.glowTopLeft {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  filter: blur(140px);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.glowBottomRight {
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 45%;
+  height: 45%;
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  filter: blur(140px);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.watermarkBrackets {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.035;
+
+  span {
+    font-size: 40vw;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color-base-content);
+  }
+}
+
+/* ── Hero Main Content ── */
+.heroMain {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 1.5rem 4rem;
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.taglinePulse {
+  font-size: clamp(0.75rem, 2vw, 1.15rem);
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+  display: block;
+  animation: pulseTagline 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseTagline {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(0.99); }
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.titleGrowYour {
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-base-content);
+  opacity: 0.92;
+}
+
+.glitchText {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-base-content);
+  animation: colorToggle 7s infinite step-end;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: transparent;
+  }
+
+  &::before {
+    animation: glitchAnim1 7s infinite linear;
+    z-index: 2;
+  }
+
+  &::after {
+    animation: glitchAnim2 7s infinite linear;
+    z-index: 3;
+  }
+}
+
+@keyframes colorToggle {
+  0%, 44% { color: var(--color-base-content); text-shadow: none; }
+  42.1%, 44.9% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; }
+  45%, 94% { color: var(--color-primary); text-shadow: none; }
+  92.1%, 94.9% { text-shadow: -2px 0 #a3e635, 2px 0 #ef4444; }
+  95%, 100% { color: var(--color-base-content); text-shadow: none; }
+}
+
+@keyframes glitchAnim1 {
+  0%, 42% { opacity: 0; transform: translate(0); }
+  42.1% { opacity: 1; color: #00ffff; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(-10px, -5px) skew(20deg); }
+  43% { color: #ff00ff; transform: translate(10px, 5px) skew(-20deg); clip-path: polygon(0 10%, 100% 0, 100% 30%, 0 35%); }
+  44% { color: var(--color-primary); transform: translate(-10px, 5px); clip-path: polygon(0 40%, 100% 50%, 100% 80%, 0 90%); }
+  44.9% { opacity: 1; }
+  45% { opacity: 0; }
+  45.1%, 92% { opacity: 0; transform: translate(0); }
+  92.1% { opacity: 1; color: #00ffff; clip-path: polygon(0 60%, 100% 55%, 100% 100%, 0 100%); transform: translate(10px, -5px) skew(10deg); }
+  93% { color: #ff00ff; transform: translate(-5px, 5px) skew(-10deg); clip-path: polygon(0 20%, 100% 20%, 100% 100%, 0 80%); }
+  94.9% { opacity: 1; }
+  95% { opacity: 0; }
+}
+
+@keyframes glitchAnim2 {
+  0%, 42% { opacity: 0; transform: translate(0); }
+  42.1% { opacity: 1; color: #a3e635; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); transform: translate(10px, 5px); }
+  43% { color: #ef4444; transform: translate(-10px, -5px) skew(10deg); clip-path: polygon(0 20%, 100% 20%, 100% 100%, 0 80%); }
+  45% { opacity: 0; }
+  45.1%, 92% { opacity: 0; transform: translate(0); }
+  92.1% { opacity: 1; color: #a3e635; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(-10px, -5px); }
+  93% { color: #ef4444; transform: translate(10px, 5px) skew(-20deg); clip-path: polygon(0 10%, 100% 0, 100% 30%, 0 35%); }
+  95% { opacity: 0; }
+}
+
+.heroSubtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-weight: 400;
+  color: var(--color-base-content);
+  opacity: 0.75;
+  max-width: 40rem;
+  line-height: 1.7;
+  margin: 0 0 2.5rem;
+}
+
+.heroBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2.25rem;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  color: var(--color-primary-content, #ffffff);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--color-primary) 35%, transparent);
+
+  &:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 15px 35px color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+}

@@ -1,0 +1,234 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 640px) {
+    padding: 2rem;
+  }
+}
+
+.header {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+/* Evervault Card Container */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4/5;
+  background: var(--color-base-100);
+  border: 1px solid var(--color-base-300);
+  border-radius: var(--radius-box, 2rem);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: var(--color-primary);
+  }
+}
+
+/* Inner frame containing the visual effect */
+.effectContainer {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  background: black;
+  border-radius: calc(var(--radius-box, 2rem) - 0.75rem);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Foreground active glowing characters using mask-image & background-clip: text */
+.glowingGrid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  word-break: break-all;
+  padding: 0.5rem;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  /* Moving linear gradient: solid primary (left), transition in middle, solid accent (right) */
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) 42%,
+    var(--color-accent) 58%,
+    var(--color-accent) 100%
+  );
+  background-size: 360px 360px;
+  background-position: calc(var(--mouse-x, 0px) - 180px) calc(var(--mouse-y, 0px) - 180px);
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  
+  /* Mask follows mouse custom properties */
+  mask-image: radial-gradient(
+    180px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    black 20%,
+    transparent 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    180px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    black 20%,
+    transparent 80%
+  );
+}
+
+.card:hover {
+  .glowingGrid {
+    opacity: 1;
+  }
+}
+
+/* Glow radial circle behind the text: Primary core transitioning to Accent rim */
+.radialGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  
+  /* Semi-transparent glow spot: solid primary, transition in middle, solid accent */
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-primary) 15%, transparent) 0%,
+    color-mix(in srgb, var(--color-primary) 15%, transparent) 42%,
+    color-mix(in srgb, var(--color-accent) 15%, transparent) 58%,
+    color-mix(in srgb, var(--color-accent) 15%, transparent) 100%
+  );
+  background-size: 360px 360px;
+  background-position: calc(var(--mouse-x, 0px) - 180px) calc(var(--mouse-y, 0px) - 180px);
+  background-repeat: no-repeat;
+  
+  /* Mask the glow using the same radial mask to keep it circular */
+  mask-image: radial-gradient(
+    180px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    black 20%,
+    transparent 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    180px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    black 20%,
+    transparent 80%
+  );
+}
+
+.card:hover .radialGlow {
+  opacity: 1;
+}
+
+/* Card Metadata info at the bottom */
+.metadata {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-base-content);
+}
+
+.subtitle {
+  font-size: 0.8125rem;
+  opacity: 0.6;
+}
+
+/* Interactive card text centered inside the effect box */
+.centeredText {
+  position: relative;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+/* Side-by-side card grid */
+.grid {
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Matrix Card Variant override */
+.matrixCard {
+  &:hover {
+    border-color: var(--color-success);
+  }
+}
+
+.matrixGlowingGrid {
+  /* Concentric success color spot: white core transitioning to rich success green */
+  background: radial-gradient(
+    180px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    color-mix(in srgb, var(--color-success) 40%, white) 0%,
+    var(--color-success) 60%,
+    transparent 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.matrixRadialGlow {
+  background: radial-gradient(
+    180px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    color-mix(in srgb, var(--color-success) 20%, transparent) 0%,
+    transparent 100%
+  ) !important;
+}
+
+.matrixCenteredText {
+  border-color: color-mix(in srgb, var(--color-success) 30%, transparent);
+}

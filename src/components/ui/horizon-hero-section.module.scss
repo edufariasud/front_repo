@@ -1,0 +1,238 @@
+.heroContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #030014;
+  color: #ffffff;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.heroCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sideMenu {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: scale(1.05);
+  }
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: width 0.2s ease;
+  }
+
+  &:hover span:nth-child(2) {
+    width: 15px;
+  }
+}
+
+.verticalText {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+  user-select: none;
+}
+
+.scrollProgress {
+  position: fixed;
+  right: 2rem;
+  bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 20;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  background: rgba(10, 10, 25, 0.6);
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.scrollText {
+  font-size: 0.65rem;
+  opacity: 0.75;
+}
+
+.progressTrack {
+  width: 90px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #f472b6);
+  transition: width 0.15s ease-out;
+}
+
+.sectionCounter {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #c084fc;
+  font-weight: 700;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  pointer-events: none;
+}
+
+.heroTitle {
+  font-size: clamp(3.5rem, 11vw, 9.5rem);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  margin-left: 0.22em; /* Compensa o letter-spacing no último caractere */
+  line-height: 1;
+  user-select: none;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* O gradiente é aplicado diretamente nos spans para que a animação individual GSAP funcione com preenchimento visível */
+.titleChar {
+  display: inline-block;
+  will-change: transform, opacity;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 55%, rgba(255, 255, 255, 0.3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 45px rgba(139, 92, 246, 0.55));
+}
+
+.heroSubtitle {
+  margin-top: 2rem;
+  max-width: 680px;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.subtitleLine {
+  display: block;
+}
+
+.scrollSections {
+  position: relative;
+  z-index: 10;
+}
+
+.contentSection {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  pointer-events: none;
+}
+
+/* Floating top navigation bar */
+.topNav {
+  position: fixed;
+  top: 1.5rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.navBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+  }
+}

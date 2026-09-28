@@ -1,0 +1,199 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem;
+
+  @media (min-width: 640px) {
+    padding: 2rem;
+  }
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.chartCard {
+  background: var(--color-base-200);
+  border: 1px solid var(--color-base-300);
+  border-radius: var(--radius-box, 2rem);
+  padding: 1.25rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (min-width: 640px) {
+    padding: 2rem;
+  }
+}
+
+.chartTitle {
+  font-size: 1.125rem;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.svgContainer {
+  width: 100%;
+  position: relative;
+}
+
+.svgElement {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Line Chart Styles */
+.chartLine {
+  stroke: var(--color-primary);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease;
+}
+
+.chartArea {
+  fill: url(#lineGrad);
+  opacity: 0.15;
+  transition: fill 0.3s ease;
+}
+
+.gridLine {
+  stroke: var(--color-base-300);
+  stroke-width: 1;
+  stroke-dasharray: 4;
+}
+
+.chartDot {
+  fill: var(--color-base-100);
+  stroke: var(--color-primary);
+  stroke-width: 3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    r: 7;
+    fill: var(--color-primary);
+    filter: drop-shadow(0 0 6px var(--color-primary));
+  }
+}
+
+/* Bar Chart Styles */
+.chartBar {
+  fill: var(--color-accent);
+  rx: 4;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    fill: var(--color-primary);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px var(--color-primary));
+  }
+}
+
+/* Radial / Circular Progress Chart */
+.radialWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.circleBg {
+  fill: none;
+  stroke: var(--color-base-300);
+  stroke-width: 10;
+}
+
+.circleFill {
+  fill: none;
+  stroke: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radialText {
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+
+  span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.dotPrimary {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.dotSecondary {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+}
+
+.dotAccent {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}

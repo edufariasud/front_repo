@@ -1,0 +1,26 @@
+// =============================================================================
+// BADGE COMPONENT — VARIANTES CUSTOMIZADAS
+// =============================================================================
+@use '../tokens' as t;
+
+.badge-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-primary-content);
+  border: none;
+  font-weight: t.$font-semibold;
+  letter-spacing: t.$tracking-wide;
+}
+
+.badge-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-base-content);
+}
+
+.badge-glow {
+  background: var(--color-primary);
+  color: var(--color-primary-content);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-primary) 60%, transparent);
+  border: none;
+}

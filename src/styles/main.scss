@@ -1,0 +1,198 @@
+// =============================================================================
+// MAIN SCSS ENTRY POINT
+// Ordem de importação é CRÍTICA:
+//   1. Tokens SCSS (via @use — DEVE vir antes de qualquer @import)
+//   2. Temas customizados (via @use)
+//   3. Componentes customizados (via @use)
+//   4. DaisyUI compilado (via @import — vem depois dos @use)
+// =============================================================================
+
+// ── @use PRIMEIRO (exigência do Sass) ────────────────────────────────────────
+
+// 1. Tokens da marca
+@use 'tokens' as *;
+
+// 2. Variantes de componentes customizadas
+@use 'components/button';
+@use 'components/card';
+@use 'components/badge';
+@use 'components/input';
+
+// 3. Utilitários gerais de layout
+@use 'utilities';
+
+// ── @import DEPOIS ───────────────────────────────────────────────────────────
+
+// 4. DaisyUI pré-compilado (NÃO MODIFICAR — arquivo do pacote npm)
+//    Inclui: reset, todos os componentes (.btn, .card, etc.)
+@import '../../node_modules/daisyui/daisyui.css';
+
+// 5. Temas oficiais do DaisyUI (apenas os selecionados)
+@import '../../node_modules/daisyui/theme/light.css';
+@import '../../node_modules/daisyui/theme/dark.css';
+@import '../../node_modules/daisyui/theme/bumblebee.css';
+@import '../../node_modules/daisyui/theme/synthwave.css';
+@import '../../node_modules/daisyui/theme/forest.css';
+@import '../../node_modules/daisyui/theme/luxury.css';
+@import '../../node_modules/daisyui/theme/business.css';
+@import '../../node_modules/daisyui/theme/night.css';
+@import '../../node_modules/daisyui/theme/dim.css';
+@import '../../node_modules/daisyui/theme/sunset.css';
+@import '../../node_modules/daisyui/theme/abyss.css';
+
+// 6. Temas customizados
+@import 'themes/dark-bumblebee';
+@import 'themes/vampire';
+
+// =============================================================================
+// ESTILOS GLOBAIS DA APLICAÇÃO
+// =============================================================================
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $text-base;
+  line-height: $leading-normal;
+  letter-spacing: -0.01em;
+  min-height: 100dvh;
+}
+
+// ─── Hierarquia Tipográfica Moderna (Estilo SaaS / Aceternity) ───────────────
+h1, .h1 {
+  font-family: $font-display;
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  font-weight: $font-black;
+  letter-spacing: $tracking-tighter;
+  line-height: $leading-tight;
+}
+
+h2, .h2 {
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: $font-extrabold;
+  letter-spacing: $tracking-tight;
+  line-height: $leading-snug;
+}
+
+h3, .h3 {
+  font-family: $font-display;
+  font-size: clamp(1.35rem, 2.2vw, 1.875rem);
+  font-weight: $font-bold;
+  letter-spacing: $tracking-tight;
+  line-height: $leading-snug;
+}
+
+h4, .h4 {
+  font-family: $font-display;
+  font-size: clamp(1.125rem, 1.8vw, 1.35rem);
+  font-weight: $font-bold;
+  letter-spacing: $tracking-tight;
+  line-height: $leading-snug;
+}
+
+// ─── Utilitários de Gradientes de Texto Modernos ─────────────────────────────
+.text-gradient-white {
+  background: linear-gradient(180deg, #ffffff 15%, rgba(255, 255, 255, 0.65) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  [data-theme="light"] &,
+  [data-theme="cupcake"] &,
+  [data-theme="bumblebee"] &,
+  [data-theme="emerald"] &,
+  [data-theme="corporate"] &,
+  [data-theme="retro"] &,
+  [data-theme="cyberpunk"] &,
+  [data-theme="valentine"] &,
+  [data-theme="garden"] &,
+  [data-theme="lofi"] &,
+  [data-theme="pastel"] &,
+  [data-theme="fantasy"] &,
+  [data-theme="wireframe"] &,
+  [data-theme="cmyk"] &,
+  [data-theme="autumn"] &,
+  [data-theme="acid"] &,
+  [data-theme="lemonade"] &,
+  [data-theme="winter"] &,
+  [data-theme="nord"] &,
+  [data-theme="caramellatte"] &,
+  [data-theme="silk"] & {
+    background: linear-gradient(180deg, var(--color-base-content) 15%, color-mix(in srgb, var(--color-base-content) 75%, transparent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(180deg, var(--color-base-content) 20%, color-mix(in srgb, var(--color-base-content) 60%, transparent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Utilitários de acessibilidade
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Focus visible global
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+// Scrollbar customizada
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base-200, #0a0a0f);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-base-300, #1a1a2e);
+  border-radius: $radius-full;
+
+  &:hover {
+    background: var(--color-neutral, #2a2a3e);
+  }
+}
+
+// Seleção de texto
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 35%, transparent);
+  color: var(--color-base-content);
+}
+
+// Sobrescrita global de variáveis para todos os temas
+:root, [data-theme] {
+  --radius-selector: 1.25rem !important;
+  --radius-field: 1rem !important;
+  --radius-box: 1.25rem !important;
+  --border: 1px !important;
+}

@@ -1,0 +1,47 @@
+// =============================================================================
+// TEMA CUSTOMIZADO: VAMPIRE
+// Inspirado na estética gótica clássica do Drácula, mas com identidade de
+// VERDADEIRO VAMPIRO: Vermelho Sangue / Carmesim profundo (#E60016) como Primary,
+// Vinho (#942464) como Secondary e fundo gótico sombrio de alto contraste.
+// =============================================================================
+
+:root:has(input.theme-controller[value="vampire"]:checked),
+[data-theme="vampire"] {
+  color-scheme: dark;
+
+  // Tons de Fundo e Superfícies (Obsidiana Gótica)
+  --color-base-100: oklch(24% 0.018 280);
+  --color-base-200: oklch(20% 0.018 280);
+  --color-base-300: oklch(17% 0.018 280);
+  --color-base-content: oklch(96% 0.005 80);
+
+  // Cores de Identidade (Vampire Blood & Gothic Wine)
+  --color-primary: oklch(57% 0.24 27.0);          // Vermelho Sangue Carmesim (#E60016)
+  --color-primary-content: oklch(98% 0 0);        // Branco puro contrastante (#FFFFFF)
+  --color-secondary: oklch(46% 0.16 350.0);       // Vinho Aveludado Gótico (#942464)
+  --color-secondary-content: oklch(96% 0 0);      // Branco suave
+  --color-accent: oklch(72% 0.16 25.0);           // Sangue Arterial / Coral luminoso (#F97770)
+  --color-accent-content: oklch(15% 0 0);         // Preto profundo
+  --color-neutral: oklch(28% 0.02 300);           // Grafite Noturno
+  --color-neutral-content: oklch(90% 0.01 300);   // Prata claro
+
+  // Cores Semânticas
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(18% 0.03 232.661);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(18% 0.03 163.223);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(20% 0.04 84.429);
+  --color-error: oklch(57% 0.24 27.0);
+  --color-error-content: oklch(98% 0 0);
+
+  // Propriedades de Estilo & Raio
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

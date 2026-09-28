@@ -1,0 +1,243 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem;
+
+  @media (min-width: 640px) {
+    padding: 2rem;
+  }
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.tableWrapper {
+  background: var(--color-base-200);
+  border: 1px solid var(--color-base-300);
+  border-radius: var(--radius-box, 2rem);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.filterBar {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-base-300);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.searchWrapper {
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.125rem;
+  height: 1.125rem;
+  opacity: 0.5;
+}
+
+.searchInput {
+  width: 100%;
+  padding-left: 2.5rem;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.customTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+
+  th {
+    background: color-mix(in srgb, var(--color-base-content) 3%, var(--color-base-200));
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+
+  td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-base-300);
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: color-mix(in srgb, var(--color-base-content) 1.5%, var(--color-base-200));
+    }
+  }
+}
+
+.avatarCell {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-neutral);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-base-300);
+  flex-shrink: 0;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-weight: 700;
+  color: var(--color-base-content);
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.roleText {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.actionsContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.actionsButton {
+  background: transparent;
+  border: none;
+  color: var(--color-base-content);
+  opacity: 0.6;
+  padding: 0.375rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    background: var(--color-base-300);
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: var(--color-base-200);
+  border: 1px solid var(--color-base-300);
+  border-radius: var(--radius-field, 2rem);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  z-index: 50;
+  min-width: 140px;
+  margin-top: 0.25rem;
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  animation: dropdownFade 0.2s ease forwards;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownItem {
+  width: 100%;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--color-base-content);
+  border-radius: calc(var(--radius-field, 2rem) - 0.25rem);
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: var(--color-base-300);
+  }
+
+  &.danger:hover {
+    background: color-mix(in srgb, oklch(60% 0.2 25) 15%, transparent);
+    color: oklch(60% 0.2 25);
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--color-base-300);
+}
+
+.pageInfo {
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 0.5rem;
+}

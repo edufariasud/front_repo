@@ -1,0 +1,219 @@
+// =============================================================================
+// BUTTON COMPONENT — VARIANTES CUSTOMIZADAS
+// Usa as CSS vars do DaisyUI como base e adiciona variantes da marca.
+// =============================================================================
+@use '../tokens' as t;
+
+// ─── Variante: Gradiente primário ────────────────────────────────────────────
+.btn-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  color: var(--color-primary-content);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: opacity t.$transition-base, transform t.$transition-base, box-shadow t.$transition-base;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background t.$transition-base;
+  }
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    &::before {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// ─── Variante: Ghost com borda gradiente ─────────────────────────────────────
+.btn-ghost-gradient {
+  background: transparent;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  color: var(--color-primary);
+  position: relative;
+  transition: all t.$transition-base;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    z-index: -1;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-primary-content);
+  }
+}
+
+// ─── Variante: Glass ─────────────────────────────────────────────────────────
+.btn-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--color-base-content);
+  transition: all t.$transition-base;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+}
+
+// ─── Tamanhos extras ─────────────────────────────────────────────────────────
+.btn-2xs {
+  height: 1.5rem;
+  padding-inline: t.$space-2;
+  font-size: t.$text-xs;
+  min-height: unset;
+}
+
+.btn-xl {
+  height: 3.25rem;
+  min-height: 3.25rem;
+  padding-inline: t.$space-8;
+  font-size: t.$text-lg;
+  font-weight: t.$font-bold;
+  letter-spacing: t.$tracking-tight;
+  border-radius: t.$radius-xl;
+}
+
+// ─── Variantes Neon Aesthetic ────────────────────────────────────────────────
+@keyframes neon-pulse-ambient {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px -2px var(--neon-glow-color, rgba(0, 240, 255, 0.4)),
+      0 0 24px -6px var(--neon-glow-color, rgba(0, 240, 255, 0.25)),
+      inset 0 0 8px -2px var(--neon-glow-color, rgba(0, 240, 255, 0.3));
+  }
+  50% {
+    box-shadow: 
+      0 0 18px 0 var(--neon-glow-color, rgba(0, 240, 255, 0.6)),
+      0 0 38px -2px var(--neon-glow-color, rgba(0, 240, 255, 0.35)),
+      inset 0 0 14px 0 var(--neon-glow-color, rgba(0, 240, 255, 0.45));
+  }
+}
+
+.btn-neon {
+  --neon-color: var(--color-primary);
+  --neon-glow-color: rgba(250, 204, 21, 0.35);
+  --neon-bg: rgba(12, 14, 20, 0.85);
+
+  background: var(--neon-bg);
+  color: #ffffff;
+  border: 1px solid var(--neon-color);
+  text-shadow: 0 0 8px var(--neon-color);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 0 12px -2px var(--neon-glow-color),
+    0 0 25px -8px var(--neon-glow-color),
+    inset 0 0 8px -2px var(--neon-glow-color);
+  transition: all t.$transition-base;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--neon-glow-color) 0%, transparent 70%);
+    opacity: 0.15;
+    transition: opacity t.$transition-base;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 
+      0 0 20px 2px var(--neon-color),
+      0 0 45px -2px var(--neon-glow-color),
+      inset 0 0 16px 2px var(--neon-glow-color);
+    text-shadow: 0 0 12px var(--neon-color), 0 0 20px #ffffff;
+
+    &::before {
+      opacity: 0.35;
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+      0 0 10px 1px var(--neon-color),
+      inset 0 0 12px 2px var(--neon-color);
+  }
+}
+
+// Cores temáticas Neon
+.btn-neon-primary {
+  --neon-color: var(--color-primary);
+  --neon-glow-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+
+.btn-neon-cyan {
+  --neon-color: #00f0ff;
+  --neon-glow-color: rgba(0, 240, 255, 0.45);
+}
+
+.btn-neon-magenta {
+  --neon-color: #ff007f;
+  --neon-glow-color: rgba(255, 0, 127, 0.45);
+}
+
+.btn-neon-purple {
+  --neon-color: #a855f7;
+  --neon-glow-color: rgba(168, 85, 247, 0.45);
+}
+
+.btn-neon-lime {
+  --neon-color: #10b981;
+  --neon-glow-color: rgba(16, 185, 129, 0.45);
+}
+
+.btn-neon-amber {
+  --neon-color: #fbbf24;
+  --neon-glow-color: rgba(251, 191, 36, 0.45);
+}
+
+.btn-neon-pulse {
+  animation: neon-pulse-ambient 2.4s ease-in-out infinite;
+}
+
+// Estilo Cyber com cantos chanfrados
+.btn-neon-cyber {
+  clip-path: polygon(
+    10px 0, 
+    100% 0, 
+    100% calc(100% - 10px), 
+    calc(100% - 10px) 100%, 
+    0 100%, 
+    0 10px
+  );
+  border-radius: 0 !important;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
