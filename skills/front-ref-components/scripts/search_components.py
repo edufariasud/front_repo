@@ -10,14 +10,14 @@ import sys
 from datetime import date
 from pathlib import Path
 
-CANDIDATE_ROOTS = [
-    Path("/run/media/liveuser/1e81fc6b-9460-4560-9706-a416cb37dbfe/@home/eduardo/Arquivos/projetos/front_ref_components"),
-    Path("/home/eduardo/Arquivos/projetos/front_ref_components"),
-]
-
 SKILL_DIR = Path(__file__).resolve().parent.parent
 STATE_FILE = SKILL_DIR / ".catalog_state.json"
 SKILL_MD_FILE = SKILL_DIR / "SKILL.md"
+
+CANDIDATE_ROOTS = [
+    SKILL_DIR.parent.parent,  # Quando dentro do próprio repositório front_ref_components/skills/front-ref-components
+    Path.home() / "Arquivos" / "projetos" / "front_ref_components",
+]
 
 AUTO_START_MARKER = "<!-- AUTO-CATALOG-START -->"
 AUTO_END_MARKER = "<!-- AUTO-CATALOG-END -->"

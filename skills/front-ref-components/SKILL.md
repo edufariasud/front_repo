@@ -8,8 +8,7 @@ description: >
 
 # Catálogo & Integração: `front_ref_components`
 
-Esta skill conecta o projeto diretamente ao repositório de referência visual e de componentes do Criador:
-**Caminho Base:** `/run/media/liveuser/1e81fc6b-9460-4560-9706-a416cb37dbfe/@home/eduardo/Arquivos/projetos/front_ref_components` (ou `/home/eduardo/Arquivos/projetos/front_ref_components`).
+Esta skill conecta o projeto diretamente ao repositório de referência visual e catálogo de componentes `front_ref_components`.
 
 Antes de criar qualquer componente de UI do zero, **consulte obrigatoriamente este acervo** para reaproveitar componentes já validados, estilizados com Tailwind v4 + DaisyUI 5 + SCSS e adaptáveis a múltiplos temas.
 
